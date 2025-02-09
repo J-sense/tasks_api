@@ -4,6 +4,7 @@ import globalErrorHandler from './middleware/globalErrorHandler';
 import notfound from './middleware/notFound';
 import { messageRoutes } from './modules/message/messsage.routes';
 import { blogsRoutes } from './modules/blog/blog.routes';
+import { projectRoutes } from './modules/projects/project.routes';
 const app: Application = express();
 // const port = 3000;
 // parsers
@@ -14,6 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.use('/api', messageRoutes);
 app.use('/api', blogsRoutes);
+app.use('/api', projectRoutes);
 app.use(globalErrorHandler);
 app.use(notfound);
 export default app;
