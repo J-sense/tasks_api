@@ -45,7 +45,19 @@ const updateBlog = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await blogServices.updateBlog(req.params.id, req.body);
     res.status(201).json({
-      message: 'Blog deleted successfully',
+      message: 'Blog updated successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const singLeblog = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await blogServices.singleProduct(req.params.id);
+    res.status(201).json({
+      message: 'Blog retrieved successfully',
       success: true,
       data: result,
     });
@@ -58,4 +70,5 @@ export const blogController = {
   deleteBlog,
   findAllBlogs,
   createBlog,
+  singLeblog,
 };

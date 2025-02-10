@@ -9,6 +9,7 @@ router.post(
   blogController.createBlog,
 );
 router.get('/blogs', blogController.findAllBlogs);
+router.get('/blogs/:id', blogController.singLeblog);
 router.delete('/blogs/:id', blogController.deleteBlog);
 router.patch('/blogs/:id', blogController.updateBlog);
 export const blogsRoutes = router;
