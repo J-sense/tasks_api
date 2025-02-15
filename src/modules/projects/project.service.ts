@@ -4,6 +4,10 @@ const createProject = async (payload: IProject) => {
   const result = await Project.create(payload);
   return result;
 };
+const findeOne = async (id: string) => {
+  const result = await Project.findById(id);
+  return result;
+};
 const findAllProject = async () => {
   const result = await Project.find();
   return result;
@@ -29,5 +33,6 @@ export const projectServices = {
   createProject,
   updateProject,
   deleteProject,
+  findeOne,
   findAllProject,
 };

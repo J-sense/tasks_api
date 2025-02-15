@@ -21,7 +21,7 @@ const projectSchema = z.object({
     description: z
       .string()
       .min(1, 'Description is required')
-      .max(1000, 'Description cannot be longer than 1000 characters'),
+      .max(1000, 'Description cannot be longer than 5000 characters'),
 
     technologies: z
       .array(z.string())

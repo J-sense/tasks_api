@@ -41,7 +41,19 @@ const deleteProjects = async (
   try {
     const result = await projectServices.deleteProject(req.params.id);
     res.status(201).json({
-      message: 'Project deleted successfully',
+      message: 'Project updated successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const findOne = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await projectServices.deleteProject(req.params.id);
+    res.status(201).json({
+      message: 'Project retrieved successfully',
       success: true,
       data: result,
     });
@@ -70,4 +82,5 @@ export const projectController = {
   deleteProjects,
   findAllProjects,
   createProjects,
+  findOne,
 };

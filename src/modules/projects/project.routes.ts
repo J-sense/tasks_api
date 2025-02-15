@@ -12,4 +12,5 @@ router.post(
 router.get('/projects', projectController.findAllProjects);
 router.delete('/projects/:id', projectController.deleteProjects);
 router.patch('/projects/:id', projectController.updateProjects);
+router.get('/projects/:id', projectController.findOne);
 export const projectRoutes = router;
