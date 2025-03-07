@@ -16,7 +16,20 @@ const rentalHouse = async (req: Request, res: Response, next: NextFunction) => {
 const getAllHouse = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { userId } = req.user;
+    console.log(userId);
     const result = await rentalService.AllHouses(userId);
+    res.status(201).json({
+      success: true,
+      message: 'All Houses Retrieved successfully',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const listings = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await rentalService.listings();
     res.status(201).json({
       success: true,
       message: 'All Houses Retrieved successfully',
@@ -66,6 +79,18 @@ const updateHouse = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+const singleHouse = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await rentalService.singleHouse(req.params.id);
+    res.status(201).json({
+      success: true,
+      message: 'House retrieved successfully',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const updateRentalRequest = async (
   req: Request,
   res: Response,
@@ -90,6 +115,8 @@ export const rentalController = {
   getAllHouse,
   deleteHouse,
   updateHouse,
+  singleHouse,
+  listings,
   getAllrentalRequest,
   updateRentalRequest,
 };

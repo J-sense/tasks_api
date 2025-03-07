@@ -2,13 +2,16 @@ import { z } from 'zod';
 
 export const rentalRequestValidationSchema = z.object({
   body: z.object({
-    message: z.string().min(1, 'Message must be at least 1 characters long'),
+    message: z
+      .string()
+      .min(1, 'Message must be at least 1 characters long')
+      .optional(),
 
     moveInDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
       message: 'Invalid move-in date',
     }),
 
-    duration: z.string().min(3, 'Duration is required'), // Example: "6 months"
+    duration: z.string(), // Example: "6 months"
 
     status: z.enum(['pending', 'approved', 'rejected']).optional(),
 

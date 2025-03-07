@@ -8,9 +8,15 @@ const createHouse = async (payload: IRentalHouse) => {
   return result;
 };
 const AllHouses = async (id: string) => {
-  const result = await RentalHouse.findById(id);
+  const result = await RentalHouse.find({ landlord: id });
+
   return result;
 };
+const listings = async () => {
+  const result = await RentalHouse.find();
+  return result;
+};
+
 const deleteHouse = async (id: string) => {
   try {
     const result = await RentalHouse.findByIdAndDelete(id);
@@ -28,6 +34,19 @@ const updateHouse = async (id: string, updatedData: any) => {
     const result = await RentalHouse.findByIdAndUpdate(id, updatedData, {
       new: true,
     });
+
+    if (!result) {
+      throw new Error('Rental house not found');
+    }
+
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+const singleHouse = async (id: string) => {
+  try {
+    const result = await RentalHouse.findById(id);
 
     if (!result) {
       throw new Error('Rental house not found');
@@ -74,4 +93,6 @@ export const rentalService = {
   updateHouse,
   getAllRentalRequest,
   rentalRequestUpdate,
+  listings,
+  singleHouse,
 };

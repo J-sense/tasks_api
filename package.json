@@ -15,11 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt": "^5.1.1",
-=======
     "cloudinary": "^2.5.1",
->>>>>>> 4549a80d91c12c9bed5bb07be3f21816852fe8db
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

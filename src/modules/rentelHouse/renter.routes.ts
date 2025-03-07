@@ -12,6 +12,8 @@ router.post(
   rentalController.rentalHouse,
 );
 router.get('/listings', auth('landlord'), rentalController.getAllHouse);
+router.get('/all-houses', rentalController.listings);
+router.get('/all-houses/:id', rentalController.singleHouse);
 router.get('/requests', rentalController.getAllrentalRequest);
 router.delete('/listings/:id', rentalController.deleteHouse);
 router.put('/listings/:id', rentalController.updateHouse);
