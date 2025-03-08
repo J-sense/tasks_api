@@ -29,7 +29,7 @@ const getAllHouse = async (req: Request, res: Response, next: NextFunction) => {
 };
 const listings = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await rentalService.listings();
+    const result = await rentalService.listings(req.query);
     res.status(201).json({
       success: true,
       message: 'All Houses Retrieved successfully',

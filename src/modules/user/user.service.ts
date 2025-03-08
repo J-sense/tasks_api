@@ -12,8 +12,44 @@ const getAllUser = async () => {
   const result = await User.find();
   return result;
 };
-const getAllHouse = async () => {
-  const result = await RentalHouse.find();
+const getAllHouse = async (query: Record<string, unknown>) => {
+  const queryObj = { ...query };
+
+  // Extract search term
+  let searchTerm = '';
+  if (query?.searchTerm) {
+    searchTerm = query.searchTerm as string;
+  }
+
+  // Construct Search Query (Search by location)
+  const searchQuery = searchTerm
+    ? {
+        $or: ['location'].map((field) => ({
+          [field]: { $regex: searchTerm, $options: 'i' },
+        })),
+      }
+    : {}; // Empty if no search term provided
+
+  // Handle price filtering (Min to Max)
+  let priceFilter = {};
+  if (query?.minPrice || query?.maxPrice) {
+    priceFilter = {
+      rentAmount: {
+        ...(query.minPrice ? { $gte: Number(query.minPrice) } : {}),
+        ...(query.maxPrice ? { $lte: Number(query.maxPrice) } : {}),
+      },
+    };
+  }
+
+  // Exclude non-filter fields from queryObj
+  const excludes = ['searchTerm', 'minPrice', 'maxPrice'];
+  excludes.forEach((el) => delete queryObj[el]);
+
+  // Merge all filters
+  const finalQuery = { ...searchQuery, ...priceFilter, ...queryObj };
+
+  // Fetch rentals from database
+  const result = await RentalHouse.find(finalQuery);
   return result;
 };
 const delateUser = async (id: string) => {

@@ -15,6 +15,11 @@ const createRentalHouseRequest = async (payload: IRentalRequest) => {
   const result = await RentalRequest.create(payload);
   return result;
 };
+const yourRequest = async (id: string) => {
+  const result = await RentalRequest.find({ tenant: id });
+  return result;
+};
 export const rentalRequestService = {
   createRentalHouseRequest,
+  yourRequest,
 };

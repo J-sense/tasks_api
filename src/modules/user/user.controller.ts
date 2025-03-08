@@ -27,7 +27,7 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
 const getAllHouse = async (req: Request, res: Response, next: NextFunction) => {
   console.log(req.user);
   try {
-    const result = await adminService.getAllHouse();
+    const result = await adminService.getAllHouse(req.query);
     res.status(201).json({
       success: true,
       message: 'All house retrieved successfully',
