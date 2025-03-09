@@ -26,7 +26,28 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+export const updateUserCredentialsController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userData = req.user; // Assuming user data is attached to req.user after authentication
+    const payload = req.body;
+
+    const result = await authServices.updateUserCredentials(userData, payload);
+    res.status(200).json({
+      success: true,
+      message: 'updated successfully',
+
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const authController = {
   register,
   login,
+  updateUserCredentialsController,
 };

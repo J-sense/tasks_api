@@ -2,8 +2,13 @@ import { NextFunction, Request, Response } from 'express';
 import catchAsync from '../utils/catchAsync';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { User } from '../modules/user/user.model';
-
-const auth = (requiredRole: string) => {
+export const USER_ROLE = {
+  admin: 'admin',
+  landlord: 'landlord',
+  tenant: 'tenant',
+} as const;
+export type TUserRole = keyof typeof USER_ROLE;
+const auth = (...requiredRole: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
     if (!token) {

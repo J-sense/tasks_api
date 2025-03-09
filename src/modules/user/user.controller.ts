@@ -24,6 +24,18 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+const AllUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await adminService.AllUser();
+    res.status(201).json({
+      success: true,
+      message: 'All user retrieved successfully',
+      date: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 const getAllHouse = async (req: Request, res: Response, next: NextFunction) => {
   console.log(req.user);
   try {
@@ -88,4 +100,5 @@ export const adminController = {
   deleteAHouse,
   getAllHouse,
   updateUserRole,
+  AllUser,
 };

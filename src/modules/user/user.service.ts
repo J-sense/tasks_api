@@ -12,6 +12,10 @@ const getAllUser = async () => {
   const result = await User.find();
   return result;
 };
+const AllUser = async () => {
+  const result = await User.find();
+  return result;
+};
 const getAllHouse = async (query: Record<string, unknown>) => {
   const queryObj = { ...query };
 
@@ -102,4 +106,5 @@ export const adminService = {
   getAllHouse,
   delateAHouse,
   updateUserRole,
+  AllUser,
 };

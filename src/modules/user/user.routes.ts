@@ -10,6 +10,7 @@ router.post(
   adminController.createAdmin,
 );
 router.get('/users', auth('admin'), adminController.getAllUser);
+router.get('/all-user', adminController.AllUser);
 router.get('/listings', auth('admin'), adminController.getAllHouse);
 router.delete('/users/:id', auth('admin'), adminController.deleteUser);
 router.put('/users/:id', auth('admin'), adminController.updateUserRole);
