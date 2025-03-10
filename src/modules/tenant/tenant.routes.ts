@@ -5,9 +5,13 @@ import { rentalRequestValidationSchema } from './tenant.validation';
 import auth from '../../middleware/auth';
 const router = express.Router();
 router.post(
-  '/requests',
+  '/tenants/requests',
   validateMiddleware(rentalRequestValidationSchema),
   rentalRequestController.createRentalRequest,
 );
-router.get('/requests', auth('tenant'), rentalRequestController.yourRequest);
+router.get(
+  '/tenants/requests',
+  auth('tenant'),
+  rentalRequestController.yourRequest,
+);
 export const rentalRequestRoutes = router;

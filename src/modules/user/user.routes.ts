@@ -9,11 +9,15 @@ router.post(
   validateMiddleware(createUserValidation),
   adminController.createAdmin,
 );
-router.get('/users', auth('admin'), adminController.getAllUser);
-router.get('/all-user', adminController.AllUser);
-router.get('/listings', auth('admin'), adminController.getAllHouse);
-router.delete('/users/:id', auth('admin'), adminController.deleteUser);
-router.put('/users/:id', auth('admin'), adminController.updateUserRole);
-router.delete('/listings/:id', auth('admin'), adminController.deleteAHouse);
+router.get('/admin/users', auth('admin'), adminController.getAllUser);
+router.get('/admin/all-user', adminController.AllUser);
+router.get('/admin/listings', auth('admin'), adminController.getAllHouse);
+router.delete('/admin/users/:id', auth('admin'), adminController.deleteUser);
+router.put('/admin/users/:id', auth('admin'), adminController.updateUserRole);
+router.delete(
+  '/admin/listings/:id',
+  auth('admin'),
+  adminController.deleteAHouse,
+);
 
 export const adminRoutes = router;

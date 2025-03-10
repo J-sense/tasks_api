@@ -18,7 +18,7 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
     res.status(201).json({
       success: true,
       message: 'All user retrieved successfully',
-      date: result,
+      data: result,
     });
   } catch (error) {
     next(error);
@@ -30,20 +30,19 @@ const AllUser = async (req: Request, res: Response, next: NextFunction) => {
     res.status(201).json({
       success: true,
       message: 'All user retrieved successfully',
-      date: result,
+      data: result,
     });
   } catch (error) {
     next(error);
   }
 };
 const getAllHouse = async (req: Request, res: Response, next: NextFunction) => {
-  console.log(req.user);
   try {
-    const result = await adminService.getAllHouse(req.query);
+    const result = await adminService.getAllHouse(req?.query);
     res.status(201).json({
       success: true,
       message: 'All house retrieved successfully',
-      date: result,
+      data: result,
     });
   } catch (error) {
     next(error);

@@ -15,10 +15,10 @@ const app: Application = express();
 // parsers
 app.use(express.json());
 app.use(cors());
-app.use('', authRoutes);
-app.use('/landlords', rentalHouseRoutes);
-app.use('/tenants', rentalRequestRoutes);
-app.use('/admin', adminRoutes);
+app.use('/', authRoutes);
+app.use('/', rentalHouseRoutes);
+app.use('/', rentalRequestRoutes);
+app.use('/', adminRoutes);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });

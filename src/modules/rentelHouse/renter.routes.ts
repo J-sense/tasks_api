@@ -6,16 +6,20 @@ import auth from '../../middleware/auth';
 
 const router = express.Router();
 router.post(
-  '/listings',
+  '/landlords/listings',
   auth('landlord'),
   validateMiddleware(createRentalHouseValidation),
   rentalController.rentalHouse,
 );
-router.get('/listings', auth('landlord'), rentalController.getAllHouse);
-router.get('/all-houses', rentalController.listings);
-router.get('/all-houses/:id', rentalController.singleHouse);
-router.get('/requests', rentalController.getAllrentalRequest);
-router.delete('/listings/:id', rentalController.deleteHouse);
-router.put('/listings/:id', rentalController.updateHouse);
-router.put('/requests/:id', rentalController.updateRentalRequest);
+router.get(
+  '/landlords/listings',
+  auth('landlord'),
+  rentalController.getAllHouse,
+);
+router.get('/landlords/all-houses', rentalController.listings);
+router.get('/landlords/all-houses/:id', rentalController.singleHouse);
+router.get('/landlords/requests', rentalController.getAllrentalRequest);
+router.delete('/landlords/listings/:id', rentalController.deleteHouse);
+router.put('/landlords/listings/:id', rentalController.updateHouse);
+router.put('/landlords/requests/:id', rentalController.updateRentalRequest);
 export const rentalHouseRoutes = router;
