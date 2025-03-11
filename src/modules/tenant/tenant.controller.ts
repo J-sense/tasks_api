@@ -7,6 +7,8 @@ const createRentalRequest = async (
   next: NextFunction,
 ) => {
   try {
+    const user = req.user;
+    console.log(user);
     const result = await rentalRequestService.createRentalHouseRequest(
       req.body,
     );
