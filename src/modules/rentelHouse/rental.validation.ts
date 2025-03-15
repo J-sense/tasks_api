@@ -2,12 +2,10 @@ import { z } from 'zod';
 
 export const createRentalHouseValidation = z.object({
   body: z.object({
-    landlord: z.string().min(24, 'Invalid landlord ID'), // Mongoose ObjectId length check
-    title: z.string().min(5, 'Title must be at least 2 characters'),
-    location: z.string().min(3, 'Location must be at least 1 characters'),
-    description: z
-      .string()
-      .min(10, 'Description must be at least 2 characters'),
+    landlord: z.string(), // Mongoose ObjectId length check
+    title: z.string(),
+    location: z.string(),
+    description: z.string(),
     rentAmount: z.number().min(1, 'Rent amount must be greater than 0'),
     bedrooms: z.number().min(1, 'Number of bedrooms must be at least 1'),
     images: z
@@ -21,7 +19,7 @@ export const createRentalHouseValidation = z.object({
 export const updateRentalHouseSchema = z.object({
   location: z
     .string()
-    .min(3, 'Location must be at least 3 characters')
+    .min(1, 'Location must be at least 3 characters')
     .optional(),
   rentAmount: z
     .number()

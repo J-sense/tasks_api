@@ -5,6 +5,7 @@ export type TUserInfo = {
   email: string;
   password: string;
   role: 'admin' | 'landlord' | 'tenant';
+  isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 };

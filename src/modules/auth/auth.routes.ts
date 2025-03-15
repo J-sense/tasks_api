@@ -16,4 +16,9 @@ router.put(
   auth('admin', 'landlord', 'tenant'),
   authController.updateUserCredentialsController,
 );
+router.put(
+  '/admin/active/:id',
+  auth('admin'),
+  authController.isActiveController,
+);
 export const authRoutes = router;

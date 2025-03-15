@@ -46,8 +46,26 @@ export const updateUserCredentialsController = async (
     next(error);
   }
 };
+const isActiveController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const result = await authServices.activeAction(req.params.id);
+    res.status(201).json({
+      success: true,
+      message: 'User in-active successfully',
+
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const authController = {
   register,
   login,
   updateUserCredentialsController,
+  isActiveController,
 };

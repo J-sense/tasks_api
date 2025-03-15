@@ -15,6 +15,10 @@ const rentalRequestSchema = new Schema(
       type: String,
       required: true,
     },
+    rentAmount: {
+      type: Number,
+      required: true,
+    },
     moveInDate: {
       type: Date,
       required: true,

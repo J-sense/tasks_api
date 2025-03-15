@@ -70,9 +70,25 @@ export const updateUserCredentials = async (
 
   return { message: 'User credentials updated successfully' };
 };
+const activeAction = async (id: string) => {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw new Error('User does not exist');
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    id,
+    { isActive: !user.isActive }, // 🔹 Toggle isActive status
+    { new: true, runValidators: true },
+  );
+
+  return updatedUser;
+};
 
 export const authServices = {
   register,
   login,
   updateUserCredentials,
+  activeAction,
 };

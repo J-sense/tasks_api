@@ -7,6 +7,7 @@ import { authRoutes } from './modules/auth/auth.routes';
 import { rentalHouseRoutes } from './modules/rentelHouse/renter.routes';
 import { rentalRequestRoutes } from './modules/tenant/tenant.routes';
 import { adminRoutes } from './modules/user/user.routes';
+import { orderRoutes } from './modules/order/order.routes';
 
 const app: Application = express();
 
@@ -19,6 +20,7 @@ app.use('/', authRoutes);
 app.use('/', rentalHouseRoutes);
 app.use('/', rentalRequestRoutes);
 app.use('/', adminRoutes);
+app.use('/', orderRoutes);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });

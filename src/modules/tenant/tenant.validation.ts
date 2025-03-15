@@ -4,7 +4,7 @@ export const rentalRequestValidationSchema = z.object({
   body: z.object({
     message: z
       .string()
-      .min(1, 'Message must be at least 1 characters long')
+      .min(1, 'Special Requests must be at least 1 characters long')
       .optional(),
 
     moveInDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
